@@ -1,5 +1,6 @@
 ﻿'use strict';
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
 var jobOfferSchema = mongoose.Schema({
     title: String,
@@ -29,9 +30,9 @@ var jobOfferSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    candidates: {
-        type: [mongoose.model('User').schema]
-    },
+    candidates: [
+        {type: Schema.Types.ObjectId, ref: 'User'}
+    ],
     isOpen: Boolean
 });
 

@@ -1,6 +1,7 @@
 ﻿'use strict';
 var mongoose = require('mongoose'),
-    encryption = require('../utilities/encryption');
+    encryption = require('../utilities/encryption'),
+    Schema = mongoose.Schema;
 
 var userSchema = mongoose.Schema({
     firstName: String,
@@ -15,17 +16,19 @@ var userSchema = mongoose.Schema({
     roles: {
         type: String,
         enum: ['admin', 'recruiter', 'user']
-    }//,
-    //jobsApplied: [mongoose.model('JobOffer').schema]
+    },
+    jobsApplied: [
+        { type: Schema.Types.ObjectId, ref: 'JobOffer' }
+    ]
 });
 
 userSchema.method({
     authenticate: function (password) {
         if (encryption.generateHashedPassword(this.salt, password) === this.hashPass) {
             return true;
-        } else {
-            return false;
         }
+
+        return false;
     }
 });
 

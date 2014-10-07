@@ -1,5 +1,6 @@
 ﻿'use strict';
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
 var companySchema = mongoose.Schema({
     name: {
@@ -7,7 +8,7 @@ var companySchema = mongoose.Schema({
         require: '{PATH} is required',
         unique: true
     },
-    recruiters: [mongoose.model('User').schema],
+    recruiters: [{type: Schema.Types.ObjectId, ref: 'User'}],
     city: String
 });
 

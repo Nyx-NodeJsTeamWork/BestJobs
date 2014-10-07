@@ -1,14 +1,15 @@
 ﻿'use strict';
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
 var notificationSchema = mongoose.Schema({
     sender: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         require: '{PATH} is required',
         ref: 'User'
     },
     receiver: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         require: '{PATH} is required',
         ref: 'User'
     },
