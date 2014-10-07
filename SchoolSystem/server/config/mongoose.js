@@ -1,6 +1,9 @@
 var mongoose = require('mongoose');
 var user = require('../models/User');
-var article = require('../models/Article');
+var company = require('../models/Company');
+var jobCategory = require('../models/JobCategory');
+var jobOffer = require('../models/JobOffer');
+var notification = require('../models/Notification');
 
 module.exports = function(config) {
     mongoose.connect(config.db);

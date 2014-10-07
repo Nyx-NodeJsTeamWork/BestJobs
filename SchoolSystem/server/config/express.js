@@ -17,9 +17,9 @@ module.exports = function(app, config) {
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(methodOverride('X-HTTP-Method-Override'));
 
-    app.use(cookieParser('hashTagPesho'));
+    app.use(cookieParser('TelerikAcademyTeamWork'));
     app.use(session({
-        secret: 'hashTagPesho',
+        secret: 'TelerikAcademyTeamWork',
         saveUninitialized: true,
         resave: true
     }));
