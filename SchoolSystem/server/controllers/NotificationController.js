@@ -1,4 +1,5 @@
-﻿var Notification = require('mongoose').model('Notification');
+﻿'use strict';
+var Notification = require('mongoose').model('Notification');
 
 module.exports = {
     getAllNotifications: function (req, res, next) {

@@ -1,3 +1,4 @@
+'use strict';
 var passport = require('passport'),
     LocalPassport = require('passport-local'),
     User = require('mongoose').model('User');

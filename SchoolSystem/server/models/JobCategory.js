@@ -1,8 +1,9 @@
-﻿var mongoose = require('mongoose');
+﻿'use strict';
+var mongoose = require('mongoose');
 
 var jobCategorySchema = mongoose.Schema({
     name: {
-        type: String, 
+        type: String,
         require: '{PATH} is required'
     }
 });

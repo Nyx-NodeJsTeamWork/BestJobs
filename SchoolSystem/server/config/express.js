@@ -1,3 +1,4 @@
+'use strict';
 var express = require('express'),
     stylus = require('stylus'),
     bodyParser = require('body-parser'),
@@ -7,7 +8,7 @@ var express = require('express'),
     methodOverride = require('method-override'),
     passport = require('passport');
 
-module.exports = function(app, config) {
+module.exports = function (app, config) {
     app.set('view engine', 'jade');
     app.set('views', config.rootPath + '/server/views');
 
@@ -27,7 +28,7 @@ module.exports = function(app, config) {
     app.use(stylus.middleware(
         {
             src: config.rootPath + '/public',
-            compile: function(str, path) {
+            compile: function (str, path) {
                 return stylus(str).set('filename', path);
             }
         }
