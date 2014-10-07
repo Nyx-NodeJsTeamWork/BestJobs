@@ -15,10 +15,8 @@ var userSchema = mongoose.Schema({
     roles: {
         type: String,
         enum: ['admin', 'recruiter', 'user']
-    },
-    jobsApplied: {
-        type: [JobOffer]
-    }
+    }//,
+    //jobsApplied: [mongoose.model('JobOffer').schema]
 });
 
 userSchema.method({

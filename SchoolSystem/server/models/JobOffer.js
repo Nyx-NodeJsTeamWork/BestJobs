@@ -5,12 +5,12 @@ var jobOfferSchema = mongoose.Schema({
     title: String,
     descriptionInfo: String,
     author: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         require: '{PATH} is required',
         ref: 'User'
     },
     category: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         require: '{PATH} is required',
         ref: 'JobCategory'
     },
@@ -21,7 +21,7 @@ var jobOfferSchema = mongoose.Schema({
     },
     experienceRequired: [String],
     company: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         require: '{PATH} is required',
         ref: 'Company'
     },
@@ -30,7 +30,7 @@ var jobOfferSchema = mongoose.Schema({
         default: Date.now
     },
     candidates: {
-        type: [User]
+        type: [mongoose.model('User').schema]
     },
     isOpen: Boolean
 });

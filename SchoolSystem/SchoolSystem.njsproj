@@ -37,7 +37,12 @@
     <Compile Include="server\config\mongoose.js" />
     <Compile Include="server\config\passport.js" />
     <Compile Include="server\config\routes.js" />
+    <Compile Include="server\controllers\CompanyController.js" />
+    <Compile Include="server\controllers\JobOffersController.js" />
+    <Compile Include="server\controllers\NotificationController.js" />
+    <Compile Include="server\controllers\UsersController.js" />
     <Compile Include="server\models\Company.js" />
+    <Compile Include="server\models\index.js" />
     <Compile Include="server\models\JobCategory.js" />
     <Compile Include="server\models\JobOffer.js" />
     <Compile Include="server\models\Notification.js" />
@@ -73,6 +78,7 @@
     <Content Include="public\views\about.jade" />
     <Content Include="public\views\index.jade" />
     <Content Include="public\views\layout.jade" />
+    <Content Include="server\views\DummyView.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="server\" />

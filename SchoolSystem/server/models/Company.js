@@ -7,7 +7,7 @@ var companySchema = mongoose.Schema({
         require: '{PATH} is required',
         unique: true
     },
-    recruiters: { type: [User] },
+    recruiters: [mongoose.model('User').schema],
     city: String
 });
 

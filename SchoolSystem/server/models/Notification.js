@@ -3,12 +3,12 @@ var mongoose = require('mongoose');
 
 var notificationSchema = mongoose.Schema({
     sender: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         require: '{PATH} is required',
         ref: 'User'
     },
     receiver: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         require: '{PATH} is required',
         ref: 'User'
     },
