@@ -1,5 +1,5 @@
 ﻿var express = require('express');
-var routes = require('./routes');
+var routes = require('./server/config/routes');
 var path = require('path');
 
 var logger = require('morgan');
@@ -11,7 +11,7 @@ var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'public/views'));
 app.set('view engine', 'jade');
 
 //app.use(favicon(__dirname + '/public/favicon.ico'));
