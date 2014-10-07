@@ -12,7 +12,7 @@ module.exports = function (app, config) {
     app.set('view engine', 'jade');
     app.set('views', config.rootPath + '/server/views');
 
-    app.use(favicon(config.rootPath + '/public/content/img/favicon.png'));
+    //app.use(favicon(config.rootPath + '/public/content/img/favicon.png'));
 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));

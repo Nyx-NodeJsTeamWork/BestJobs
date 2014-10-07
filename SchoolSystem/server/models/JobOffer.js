@@ -16,17 +16,17 @@ var jobOfferSchema = mongoose.Schema({
     },
     skillsRequired: [String],
     employementType: {
-        type: String, 
+        type: String,
         enum: ['full-time', 'part-time']
     },
     experienceRequired: [String],
     company: {
         type: Schema.Types.ObjectId,
-        require: '{PATH} is required', 
+        require: '{PATH} is required',
         ref: 'Company'
     },
     dateCreated: {
-        type: Date, 
+        type: Date,
         default: Date.now
     },
     candidates: {
