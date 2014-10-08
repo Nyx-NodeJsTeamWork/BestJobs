@@ -32,6 +32,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="public\app\account\auth.js" />
+    <Compile Include="public\app\account\authorization.js" />
+    <Compile Include="public\app\account\identity.js" />
+    <Compile Include="public\app\account\LoginCtrl.js" />
+    <Compile Include="public\app\account\notifier.js" />
+    <Compile Include="public\app\account\SignUpCtrl.js" />
+    <Compile Include="public\app\app.js" />
     <Compile Include="server\config\auth.js" />
     <Compile Include="server\config\config.js" />
     <Compile Include="server\config\express.js" />
@@ -52,49 +59,59 @@
     <Compile Include="server\utilities\encryption.js" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="public\javascripts\bootstrap.js" />
-    <Content Include="public\javascripts\bootstrap.min.js" />
-    <Content Include="public\javascripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="public\javascripts\jquery-1.10.2.js" />
-    <Content Include="public\javascripts\jquery-1.10.2.min.js" />
-    <Content Include="public\javascripts\jquery.validate-vsdoc.js" />
-    <Content Include="public\javascripts\jquery.validate.js" />
-    <Content Include="public\javascripts\jquery.validate.min.js" />
-    <Content Include="public\javascripts\jquery.validate.unobtrusive.js" />
-    <Content Include="public\javascripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="public\javascripts\modernizr-2.6.2.js" />
-    <Content Include="public\javascripts\respond.js" />
-    <Content Include="public\javascripts\respond.min.js" />
-    <Content Include="public\javascripts\_references.js" />
+    <Content Include="public\app\account\home.html" />
+    <Content Include="public\libs\javascripts\bootstrap.js" />
+    <Content Include="public\libs\javascripts\bootstrap.min.js" />
+    <Content Include="public\libs\javascripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="public\libs\javascripts\jquery-1.10.2.js" />
+    <Content Include="public\libs\javascripts\jquery-1.10.2.min.js" />
+    <Content Include="public\libs\javascripts\jquery.validate-vsdoc.js" />
+    <Content Include="public\libs\javascripts\jquery.validate.js" />
+    <Content Include="public\libs\javascripts\jquery.validate.min.js" />
+    <Content Include="public\libs\javascripts\jquery.validate.unobtrusive.js" />
+    <Content Include="public\libs\javascripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="public\libs\javascripts\modernizr-2.6.2.js" />
+    <Content Include="public\libs\javascripts\respond.js" />
+    <Content Include="public\libs\javascripts\respond.min.js" />
+    <Content Include="public\libs\javascripts\_references.js" />
     <Content Include="package.json" />
-    <Content Include="public\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="public\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="public\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="public\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="public\javascripts\jquery-1.10.2.min.map" />
-    <Content Include="public\stylesheets\bootstrap.css" />
-    <Content Include="public\stylesheets\bootstrap.min.css" />
-    <Content Include="public\stylesheets\style.styl" />
+    <Content Include="public\libs\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="public\libs\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="public\libs\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="public\libs\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="public\libs\javascripts\jquery-1.10.2.min.map" />
+    <Content Include="public\libs\stylesheets\bootstrap.css" />
+    <Content Include="public\libs\stylesheets\bootstrap.min.css" />
+    <Content Include="public\libs\stylesheets\style.styl" />
     <Content Include="README.md" />
-    <Content Include="public\views\contact.jade" />
-    <Content Include="public\views\about.jade" />
-    <Content Include="public\views\index.jade" />
-    <Content Include="public\views\layout.jade" />
-    <Content Include="server\views\DummyView.html" />
+    <Content Include="public\app\views\contact.jade" />
+    <Content Include="public\app\views\about.jade" />
+    <Content Include="public\app\views\index.jade" />
+    <Content Include="public\app\views\layout.jade" />
+    <Content Include="server\views\includes\footer.jade" />
+    <Content Include="server\views\includes\header.jade" />
+    <Content Include="server\views\includes\main.jade" />
+    <Content Include="server\views\includes\scripts.jade" />
+    <Content Include="server\views\index.html" />
+    <Content Include="server\views\index.jade" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="public\app\" />
+    <Folder Include="public\app\account\" />
+    <Folder Include="public\libs\" />
     <Folder Include="server\" />
     <Folder Include="public\" />
-    <Folder Include="public\fonts\" />
+    <Folder Include="public\libs\fonts\" />
     <Folder Include="public\images\" />
-    <Folder Include="public\javascripts\" />
-    <Folder Include="public\stylesheets\" />
+    <Folder Include="public\libs\javascripts\" />
+    <Folder Include="public\libs\stylesheets\" />
     <Folder Include="server\config\" />
     <Folder Include="server\controllers\" />
     <Folder Include="server\models\" />
     <Folder Include="server\utilities\" />
     <Folder Include="server\views\" />
-    <Folder Include="public\views\" />
+    <Folder Include="public\app\views\" />
+    <Folder Include="server\views\includes\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
   <ProjectExtensions>
