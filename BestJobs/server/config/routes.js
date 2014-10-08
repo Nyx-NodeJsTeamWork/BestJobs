@@ -10,9 +10,7 @@ module.exports = function (app) {
     app.post('/api/login', auth.login);
     app.post('/api/logout', auth.logout);
     
-    app.get('/api/jobs', function () { 
-        //TODO: view all jobs + filtrations
-    });
+    app.get('/api/jobs', auth.isInRole('user'), controllers.jobOffers.getAllJobOffers);
     
     app.route('/api/jobs/:id')
         .get(/*view specific job*/)

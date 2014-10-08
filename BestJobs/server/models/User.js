@@ -15,6 +15,7 @@ var userSchema = mongoose.Schema({
     hashPass: String,
     roles: {
         type: String,
+        require: '{PATH} is required',
         enum: ['admin', 'recruiter', 'user']
     },
     jobsApplied: [

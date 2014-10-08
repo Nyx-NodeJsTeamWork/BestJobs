@@ -8,8 +8,8 @@ module.exports = {
         newUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
         User.create(newUserData, function (err, user) {
             if (err) {
-                console.log('Failed to register new user: ' + err);
-                return;
+                res.status(400);
+                return res.send({ reason: 'Failed to register new user: ' +err.toString() });
             }
 
             req.logIn(user, function (err) {
