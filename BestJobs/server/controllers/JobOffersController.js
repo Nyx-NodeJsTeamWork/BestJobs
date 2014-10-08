@@ -62,5 +62,20 @@ module.exports = {
                 res.status(200).send('Successfully apply for a job!');
             });
         });
+    }, 
+    createJobOffer: function (req, res, next) {
+        var jobOfferData = req.body;
+        
+        jobOfferData.author = req.user._id;
+        jobOfferData.isOpen = true;
+
+        JobOffer.create(jobOfferData, function (err, offer) { 
+            if (err) {
+                return res.status(400)
+                    .send({ reason: 'Failed to create new offer: ' + err.toString() });
+            }
+            
+            res.status(201).send(offer);
+        });
     }
 };

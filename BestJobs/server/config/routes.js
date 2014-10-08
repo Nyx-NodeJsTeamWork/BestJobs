@@ -17,7 +17,7 @@ module.exports = function (app) {
         .put(auth.isInRole('user'), controllers.jobOffers.applyForJobOfferById);
 
     app.route('/api/jobs/create')
-        .post(/* create job */);
+        .post(auth.isInRole('recruiter'), controllers.jobOffers.createJobOffer);
     
     app.route('/api/offers')
         .get(/* Get all offers + filter */);
