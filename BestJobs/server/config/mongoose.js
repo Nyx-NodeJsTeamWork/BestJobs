@@ -24,4 +24,5 @@ module.exports = function (config) {
     });
 
     user.seedInitialUsers();
+    jobOffer.seedInitialJobOffer();
 };

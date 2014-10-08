@@ -15,14 +15,13 @@ var userSchema = mongoose.Schema({
     hashPass: String,
     roles: {
         type: String,
+        require: '{PATH} is required',
         enum: ['admin', 'recruiter', 'user']
     },
-    jobsApplied: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'JobOffer'
-        }
-    ],
+    jobsApplied: [{
+        type: Schema.Types.ObjectId,
+        ref: 'JobOffer'
+    }],
     cv: {
         type: Schema.Types.ObjectId,
         ref: 'CV'
@@ -47,10 +46,6 @@ module.exports.seedInitialUsers = function () {
             console.log('Cannot find users: ' + err);
             return;
         }
-
-        //        User.remove({}, function(err) {
-        //            console.log('collection removed')
-        //        });
 
         if (collection.length === 0) {
             var salt,

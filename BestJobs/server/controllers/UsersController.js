@@ -8,8 +8,8 @@ module.exports = {
         newUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, newUserData.password);
         User.create(newUserData, function (err, user) {
             if (err) {
-                console.log('Failed to register new user: ' + err);
-                return;
+                res.status(400);
+                return res.send({ reason: 'Failed to register new user: ' +err.toString() });
             }
 
             req.logIn(user, function (err) {
@@ -46,5 +46,15 @@ module.exports = {
 
             res.send(collection);
         })
+    },
+    getUser: function (req, res, next) {
+        User.findOne({ _id: req.params.id }).exec(function (err, user) {
+            if (err) { 
+                return res.status(404)
+                        .send('There is no user with this id');
+            }
+
+            res.status(200).send(user);
+        });
     }
 }

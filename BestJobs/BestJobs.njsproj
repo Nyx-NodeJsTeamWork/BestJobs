@@ -161,6 +161,7 @@
     <Compile Include="server\controllers\NotificationsController.js" />
     <Compile Include="server\controllers\UsersController.js" />
     <Compile Include="server\models\Company.js" />
+    <Compile Include="server\models\CV.js" />
     <Compile Include="server\models\index.js" />
     <Compile Include="server\models\JobCategory.js" />
     <Compile Include="server\models\JobOffer.js" />

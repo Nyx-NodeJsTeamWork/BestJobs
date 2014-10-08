@@ -10,26 +10,24 @@ module.exports = function (app) {
     app.post('/api/login', auth.login);
     app.post('/api/logout', auth.logout);
     
-    app.get('/api/jobs', function () { 
-        //TODO: view all jobs + filtrations
-    });
+    app.get('/api/jobs', auth.isInRole('user'), controllers.jobOffers.getAllJobOffers);
     
     app.route('/api/jobs/:id')
-        .get(/*view specific job*/)
-        .put(/*join job*/ );
+        .get(auth.isInRole('user'), controllers.jobOffers.getJobOfferById)
+        .put(auth.isInRole('user'), controllers.jobOffers.applyForJobOfferById);
 
     app.route('/api/jobs/create')
-        .post(/* create job */);
+        .post(auth.isInRole('recruiter'), controllers.jobOffers.createJobOffer);
     
     app.route('/api/offers')
-        .get(/* Get all offers + filter */);
+        .get(auth.isInRole('recruiter'), controllers.jobOffers.getAllJobOffers);
     
     app.route('/api/offers/:id')
-        .get(/* View specific offer */);
+        .get(auth.isInRole('recruiter'), controllers.jobOffers.getJobOfferDetailsInfo);
 
     app.route('/api/candidates/:id')
-        .get(/*Get candidate view page */)
-        .put(/* Accepct specific candidate to interview*/)
+        .get(auth.isInRole('recruiter'), controllers.users.getUser)
+        .put(auth.isInRole('recruiter'), controllers.jobOffers.acceptCandidateForTheJob);
 
     app.get('/api/*', function (req, res) {
         res.status(404);
