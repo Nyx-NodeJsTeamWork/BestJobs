@@ -23,7 +23,7 @@ module.exports = function (app) {
         .get(auth.isInRole('recruiter'), controllers.jobOffers.getAllJobOffers);
     
     app.route('/api/offers/:id')
-        .get(/* View specific offer */);
+        .get(auth.isInRole('recruiter'), controllers.jobOffers.getJobOfferDetailsInfo);
 
     app.route('/api/candidates/:id')
         .get(/*Get candidate view page */)

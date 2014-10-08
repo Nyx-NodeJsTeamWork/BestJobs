@@ -1,5 +1,6 @@
 ﻿'use strict';
 var JobOffer = require('mongoose').model('JobOffer');
+var User = require('mongoose').model('User');
 var mongoose = require('mongoose');
 var DEFAULT_PAGE_SIZE = 10;
 
@@ -18,7 +19,7 @@ module.exports = {
         if (req.user.roles.indexOf('recruiter') > -1 && req.query.isMine) {
             query = query.where('author', mongoose.Types.ObjectId(req.user._id));
         }
-
+        
         query.exec(function (err, collection) {
             if (err) {
                 return res.status(400)
@@ -75,6 +76,26 @@ module.exports = {
             }
             
             res.status(201).send(offer);
+        });
+    },
+    getJobOfferDetailsInfo: function (req, res, next) {
+        var currentUser = req.user._id;
+        
+        JobOffer.findOne({ _id: req.params.id }).exec(function (err, offer) {
+            if (err) {
+                return res.status(400)
+                    .send({ reason: 'Fail to get details info for this offer: ' + err.toString() });
+            }
+            
+            if (offer.author.equals(currentUser)) {
+                User.find({
+                    '_id': {
+                        $in: offer.candidates
+                    }
+                }, function (err, users) {
+                    res.status(200).send(users);
+                });
+            }
         });
     }
 };

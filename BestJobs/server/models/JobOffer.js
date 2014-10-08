@@ -10,6 +10,10 @@ var jobOfferSchema = mongoose.Schema({
         require: '{PATH} is required',
         ref: 'User'
     },
+    hired: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
     category: {
         type: mongoose.Schema.Types.ObjectId,
         require: '{PATH} is required',
