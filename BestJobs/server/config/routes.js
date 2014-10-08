@@ -30,11 +30,11 @@ module.exports = function (app) {
         .get(auth.isInRole('recruiter'), controllers.users.getUser)
         .put(auth.isInRole('recruiter'), controllers.jobOffers.acceptCandidateForTheJob);
 
-    app.route('app/notifications')
+    app.route('/api/notifications')
         .get(auth.isAuthenticated, controllers.notifications.getAll)
         .post(auth.isAuthenticated, controllers.notifications.createNotification);
 
-    app.route('app/notifications/:id')
+    app.route('/api/notifications/:id')
         .get(auth.isAuthenticated, controllers.notifications.getById);
 
     app.get('/api/*', function (req, res) {
