@@ -1,3 +1,4 @@
+'use strict';
 var auth = require('./auth'),
     controllers = require('../controllers');
 
@@ -9,19 +10,19 @@ module.exports = function (app) {
 
     app.post('/api/login', auth.login);
     app.post('/api/logout', auth.logout);
-    
+
     app.get('/api/jobs', auth.isInRole('user'), controllers.jobOffers.getAllJobOffers);
-    
+
     app.route('/api/jobs/:id')
         .get(auth.isInRole('user'), controllers.jobOffers.getJobOfferById)
         .put(auth.isInRole('user'), controllers.jobOffers.applyForJobOfferById);
 
     app.route('/api/jobs/create')
         .post(auth.isInRole('recruiter'), controllers.jobOffers.createJobOffer);
-    
+
     app.route('/api/offers')
         .get(auth.isInRole('recruiter'), controllers.jobOffers.getAllJobOffers);
-    
+
     app.route('/api/offers/:id')
         .get(auth.isInRole('recruiter'), controllers.jobOffers.getJobOfferDetailsInfo);
 
@@ -29,16 +30,23 @@ module.exports = function (app) {
         .get(auth.isInRole('recruiter'), controllers.users.getUser)
         .put(auth.isInRole('recruiter'), controllers.jobOffers.acceptCandidateForTheJob);
 
+    app.route('app/notifications')
+        .get(auth.isAuthenticated, controllers.notifications.getAll)
+        .post(auth.isAuthenticated, controllers.notifications.createNotification);
+
+    app.route('app/notifications/:id')
+        .get(auth.isAuthenticated, controllers.notifications.getById);
+
     app.get('/api/*', function (req, res) {
         res.status(404);
         res.end();
     });
-    
+
     app.get('*', function (req, res) {
         res.render('index', { currentUser: req.user });
     });
 
-    app.get('/partials/:partialArea/:partialName', function(req, res) {
-        res.render('../../public/app/' + req.params.partialArea + '/' + req.params.partialName)
-    });    
+    app.get('/partials/:partialArea/:partialName', function (req, res) {
+        res.render('../../public/app/' + req.params.partialArea + '/' + req.params.partialName);
+    });
 };
