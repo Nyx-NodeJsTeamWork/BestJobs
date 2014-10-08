@@ -13,7 +13,7 @@ module.exports = function (app) {
     app.get('/api/jobs', auth.isInRole('user'), controllers.jobOffers.getAllJobOffers);
     
     app.route('/api/jobs/:id')
-        .get(/*view specific job*/)
+        .get(auth.isInRole('user'), controllers.jobOffers.getJobOfferById)
         .put(/*join job*/ );
 
     app.route('/api/jobs/create')

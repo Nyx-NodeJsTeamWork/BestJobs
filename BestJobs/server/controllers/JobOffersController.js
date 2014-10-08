@@ -32,7 +32,8 @@ module.exports = {
     getJobOfferById: function (req, res, next) {
         JobOffer.findOne({ _id: req.params.id }).exec(function (err, course) {
             if (err) {
-                console.log('Job offer could not be loaded: ' + err);
+                res.status(404);
+                return res.send({ reason: 'Job offer could not be loaded: ' + err.toString() });
             }
             
             res.send(course);

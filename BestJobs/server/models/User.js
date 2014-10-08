@@ -49,10 +49,6 @@ module.exports.seedInitialUsers = function () {
             return;
         }
 
-        //        User.remove({}, function(err) {
-        //            console.log('collection removed')
-        //        });
-
         if (collection.length === 0) {
             var salt,
                 hashedPwd;
