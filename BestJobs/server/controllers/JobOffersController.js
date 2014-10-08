@@ -22,21 +22,45 @@ module.exports = {
             .limit(DEFAULT_PAGE_SIZE)
             .exec(function (err, collection) {
             if (err) {
-                res.status(400);
-                return res.send({ reason: 'Job offers could not be loaded: ' + err.toString() });
+                return res.status(400)
+                    .send({ reason: 'Job offers could not be loaded: ' + err.toString() });
             }
             
             res.send(collection);
         });
     },
     getJobOfferById: function (req, res, next) {
-        JobOffer.findOne({ _id: req.params.id }).exec(function (err, course) {
+        JobOffer.findOne({ _id: req.params.id }).exec(function (err, offer) {
             if (err) {
-                res.status(404);
-                return res.send({ reason: 'Job offer could not be loaded: ' + err.toString() });
+                return res.status(404)
+                    .send({ reason: 'Job offer could not be loaded: ' + err.toString() });
             }
             
-            res.send(course);
+            res.send(offer);
+        });
+    },
+    applyForJobOfferById: function (req, res, next) {
+        JobOffer.findOne({ _id: req.params.id }).exec(function (err, offer) {
+            if (!offer.isOpen) { 
+                return res.status(405)
+                        .send('Job offer is closed, You\'re not allowed to apply for this job!');
+            }
+
+            if (offer.candidates.indexOf(req.user._id) === -1) {
+                offer.candidates.push(req.user._id);
+            } else { 
+                return res.status(405)
+                        .send('You already apply for this job!');   
+            }
+
+            offer.save(function (err, updatedItem, numberAffected) {
+                if (err) {
+                    return res.status(400)
+                        .send('Error updating item: ' + err);
+                }
+                
+                res.status(200).send('Successfully apply for a job!');
+            });
         });
     }
 };

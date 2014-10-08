@@ -14,7 +14,7 @@ module.exports = function (app) {
     
     app.route('/api/jobs/:id')
         .get(auth.isInRole('user'), controllers.jobOffers.getJobOfferById)
-        .put(/*join job*/ );
+        .put(auth.isInRole('user'), controllers.jobOffers.applyForJobOfferById);
 
     app.route('/api/jobs/create')
         .post(/* create job */);
