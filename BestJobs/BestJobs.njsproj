@@ -13,7 +13,7 @@
     <ProjectGuid>74eddb62-108e-4bce-acaf-e13c32e0767b</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>app.js</StartupFile>
+    <StartupFile>server.js</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -31,9 +31,9 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="app.js" />
+    <Compile Include="public\app\account\usersResource.js" />
+    <Compile Include="server.js" />
     <Compile Include="public\app\account\auth.js" />
-    <Compile Include="public\app\account\authorization.js" />
     <Compile Include="public\app\account\identity.js" />
     <Compile Include="public\app\account\LoginCtrl.js" />
     <Compile Include="public\app\account\notifier.js" />
@@ -170,7 +170,7 @@
     <Compile Include="server\utilities\encryption.js" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="public\app\account\home.html" />
+    <Content Include="public\app\account\login.jade" />
     <Content Include="package.json" />
     <Content Include="public\css\site.css" />
     <Content Include="public\css\site.styl" />

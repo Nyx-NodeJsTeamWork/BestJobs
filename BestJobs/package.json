@@ -2,7 +2,7 @@
   "name": "BestJobs",
   "version": "0.0.0",
   "description": "BestJobs",
-  "main": "app.js",
+  "main": "server.js",
   "author": {
     "name": "Nyx Team",
     "email": ""

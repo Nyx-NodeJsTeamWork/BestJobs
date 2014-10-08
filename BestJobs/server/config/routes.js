@@ -29,6 +29,10 @@ module.exports = function (app) {
     app.route('/api/candidates/:id')
         .get(auth.isInRole('recruiter'), controllers.users.getUser)
         .put(auth.isInRole('recruiter'), controllers.jobOffers.acceptCandidateForTheJob);
+    
+    app.get('/partials/:partialArea/:partialName', function (req, res) {
+        res.render('../../public/app/' + req.params.partialArea + '/' + req.params.partialName)
+    }); 
 
     app.route('/api/notifications')
         .get(auth.isAuthenticated, controllers.notifications.getAll)
@@ -44,9 +48,5 @@ module.exports = function (app) {
 
     app.get('*', function (req, res) {
         res.render('index', { currentUser: req.user });
-    });
-
-    app.get('/partials/:partialArea/:partialName', function (req, res) {
-        res.render('../../public/app/' + req.params.partialArea + '/' + req.params.partialName);
-    });
+    });   
 };

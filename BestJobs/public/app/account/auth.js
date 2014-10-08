@@ -1,56 +1,78 @@
 'use strict';
 
-app.factory('auth', ['$http', '$q', 'identity', 'authorization', 'baseServiceUrl', function($http, $q, identity, authorization, baseServiceUrl) {
-    var usersApi = baseServiceUrl + '/api/users'
 
+app.factory('auth', function ($http, $q, identity, UsersResource) {
     return {
-        signup: function(user) {
+        signup: function (user) {
             var deferred = $q.defer();
-
-            $http.post(usersApi + '/register', user)
-                .success(function() {
-                    deferred.resolve();
-                }, function(response) {
-                    deferred.reject(response);
-                });
-
+            
+            user = new UsersResource(user);
+            user.$save().then(function () {
+                identity.currentUser = user;
+                deferred.resolve();
+            }, function (response) {
+                deferred.reject(response);
+            });
+            
             return deferred.promise;
         },
-        login: function(user){
+        update: function (user) {
             var deferred = $q.defer();
-            user['grant_type'] = 'password';
-            $http.post(usersApi + '/login', 'username=' + user.username + '&password=' + user.password + '&grant_type=password', { headers: {'Content-Type': 'application/x-www-form-urlencoded'} })
-                .success(function(response) {
-                    if (response["access_token"]) {
-                        identity.setCurrentUser(response);
-                        deferred.resolve(true);
-                    }
-                    else {
-                        deferred.resolve(false);
-                    }
-                });
-
+            
+            var updatedUser = new UsersResource(user);
+            updatedUser._id = identity.currentUser._id;
+            updatedUser.$update().then(function () {
+                identity.currentUser.firstName = updatedUser.firstName;
+                identity.currentUser.lastName = updatedUser.lastName;
+                deferred.resolve();
+            }, function (response) {
+                deferred.reject(response);
+            });
+            
             return deferred.promise;
         },
-        logout: function() {
+        login: function (user) {
             var deferred = $q.defer();
-
-            var headers = authorization.getAuthorizationHeader();
-            $http.post(usersApi + '/logout', {}, { headers: headers })
-                .success(function() {
-                    identity.setCurrentUser(undefined);
-                    deferred.resolve();
-                });
-
+            
+            $http.post('api/login', user).success(function (response) {
+                if (response.success) {
+                    var user = new UsersResource();
+                    angular.extend(user, response.user);
+                    identity.currentUser = user;
+                    deferred.resolve(true);
+                }
+                else {
+                    deferred.resolve(false);
+                }
+            });
+            
             return deferred.promise;
         },
-        isAuthenticated: function() {
+        logout: function () {
+            var deferred = $q.defer();
+            
+            $http.post('api/logout').success(function () {
+                identity.currentUser = undefined;
+                deferred.resolve();
+            });
+            
+            return deferred.promise;
+        },
+        isAuthenticated: function () {
             if (identity.isAuthenticated()) {
                 return true;
             }
             else {
                 return $q.reject('not authorized');
             }
+        },
+        isAuthorizedForRole: function (role) {
+            if (identity.isAuthorizedForRole(role)) {
+                return true;
+            }
+            else {
+                return $q.reject('not authorized');
+            }
         }
-    }
-}])
+    };
+});

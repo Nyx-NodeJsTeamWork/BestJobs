@@ -1,0 +1,20 @@
+.row(ng-controller="LoginCtrl")
+    .col-md-3
+    .col-lg-6
+        .well.bs-component
+            form.form-horizontal.form-Login(name='loginForm')
+                legend Login
+                .form-group
+                    label.col-lg-3.control-label Username
+                    .col-lg-9
+                        input.form-control(type='text', placeholder='Username', data-ng-model='user.username', required='required', autofocus='autofocus')
+                .form-group
+                    label.col-lg-3.control-label Password
+                    .col-lg-9
+                        input.form-control(type='password', placeholder='Password', data-ng-model='user.password', required='required')
+                button.btn.btn-primary.btn-info.btn-block(type='submit', ng-click='login(user, loginForm)') Login
+            a.btn.btn-default.btn-sm.btn-block(href='#/signup') Register
+            hr
+            .alert.alert-danger(data-ng-hide='message == ""')
+                | {{message}}
+        .col-md-3
