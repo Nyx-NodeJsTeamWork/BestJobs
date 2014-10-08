@@ -1,22 +1,13 @@
-.navbar.navbar-inverse
-    .container
-        .navbar-header
-            a.navbar-brand(href="#/") Simple Blog System
-            ul.nav.navbar-nav
-                li
-                    a(href="#/search") Search
-                li(ng-show="userData.isAuth")
-                    a(href="#/add-article") Add New
-                li(ng-show="checkRole('admin')")
-                    a(href="#/approve-article") Approve
-
-        .collapse.navbar-collapse(data-collapse='!navbarExpanded')
-            ul.nav.navbar-nav.navbar-right
-                li(data-ng-show='userData.isAuth')
-                    a(href='#') Welcome {{userData.username}}
-                li(data-ng-show='userData.isAuth')
-                    a(href='', data-ng-click='logOut()') Logout
-                li(data-ng-show='!userData.isAuth')
-                    a(href='#/login') Login
-                li(data-ng-show='!userData.isAuth')
-                    a(href='#/signup') Sign Up
+block main-content
+    header.nav.navbar.navbar-default.navbar-fixed-top
+        .container
+            .navbar-header
+                a.navbar-brand(href="#/") Best Jobs
+            .navbar-collapse.collapse
+                ul.nav.navbar-nav
+                    li
+                        a(href="#/items") Search
+                    li(ng-show="identity.isAuthenticated()")
+                        a(href="#/myads") My Ads
+                        
+                div(ng-include="'partials/account/login'")

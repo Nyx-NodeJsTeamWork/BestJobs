@@ -1,11 +1,14 @@
 doctype
-html(ng-app="appMain" ng-controller="PageController")
+html
     head
-        title {{title}}
-        link(rel="stylesheet" href="/content/css/bootstrap.min.css")
-        link(rel="stylesheet" href="/content/css/app.css")
-    body
+        title Best Jobs
+        meta(charset="utf-8")
+        link(rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css")
+        link(rel="stylesheet" href="/lib/toastr/toastr.css")
+        link(rel="stylesheet" href="/css/site.css")
+    body(ng-app="app")
         include includes/header
         include includes/main
         include includes/footer
         include includes/scripts
+        include includes/currentUser
