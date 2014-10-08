@@ -1,10 +1,10 @@
 {
-  "name": "SchoolSystem",
+  "name": "BestJobs",
   "version": "0.0.0",
-  "description": "SchoolSystem",
+  "description": "BestJobs",
   "main": "app.js",
   "author": {
-    "name": "Ivo",
+    "name": "Nyx Team",
     "email": ""
   },
   "dependencies": {

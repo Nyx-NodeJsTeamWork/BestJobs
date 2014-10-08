@@ -18,8 +18,15 @@ var userSchema = mongoose.Schema({
         enum: ['admin', 'recruiter', 'user']
     },
     jobsApplied: [
-        { type: Schema.Types.ObjectId, ref: 'JobOffer' }
-    ]
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'JobOffer'
+        }
+    ],
+    cv: {
+        type: Schema.Types.ObjectId,
+        ref: 'CV'
+    }
 });
 
 userSchema.method({
