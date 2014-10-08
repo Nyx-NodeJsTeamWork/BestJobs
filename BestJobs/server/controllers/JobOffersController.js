@@ -1,6 +1,6 @@
 ﻿'use strict';
 var JobOffer = require('mongoose').model('JobOffer');
-
+var mongoose = require('mongoose');
 var DEFAULT_PAGE_SIZE = 10;
 
 module.exports = {
@@ -10,17 +10,16 @@ module.exports = {
         var orderBy = req.query.orderBy || 'isOpen';
         var orderType = req.query.orderType === 'desc' ? '-' : '';
         
-        //TODO: add filter
-        //var companyId = req.query.company || '';
-        //var categoryId = req.query.category || '';      
-        //.where({ company: companyId })
-        //.where({ categories: categoryId })
-        
-        JobOffer.find()
+        var query = JobOffer.find()
             .sort(orderType + orderBy)
             .skip(DEFAULT_PAGE_SIZE * (page - 1))
-            .limit(DEFAULT_PAGE_SIZE)
-            .exec(function (err, collection) {
+            .limit(DEFAULT_PAGE_SIZE);
+        
+        if (req.user.roles.indexOf('recruiter') > -1 && req.query.isMine) {
+            query = query.where('author', mongoose.Types.ObjectId(req.user._id));
+        }
+
+        query.exec(function (err, collection) {
             if (err) {
                 return res.status(400)
                     .send({ reason: 'Job offers could not be loaded: ' + err.toString() });
@@ -41,18 +40,18 @@ module.exports = {
     },
     applyForJobOfferById: function (req, res, next) {
         JobOffer.findOne({ _id: req.params.id }).exec(function (err, offer) {
-            if (!offer.isOpen) { 
+            if (!offer.isOpen) {
                 return res.status(405)
                         .send('Job offer is closed, You\'re not allowed to apply for this job!');
             }
-
+            
             if (offer.candidates.indexOf(req.user._id) === -1) {
                 offer.candidates.push(req.user._id);
-            } else { 
+            } else {
                 return res.status(405)
-                        .send('You already apply for this job!');   
+                        .send('You already apply for this job!');
             }
-
+            
             offer.save(function (err, updatedItem, numberAffected) {
                 if (err) {
                     return res.status(400)
@@ -68,8 +67,8 @@ module.exports = {
         
         jobOfferData.author = req.user._id;
         jobOfferData.isOpen = true;
-
-        JobOffer.create(jobOfferData, function (err, offer) { 
+        
+        JobOffer.create(jobOfferData, function (err, offer) {
             if (err) {
                 return res.status(400)
                     .send({ reason: 'Failed to create new offer: ' + err.toString() });

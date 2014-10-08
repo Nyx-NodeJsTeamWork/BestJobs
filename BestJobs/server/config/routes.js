@@ -20,7 +20,7 @@ module.exports = function (app) {
         .post(auth.isInRole('recruiter'), controllers.jobOffers.createJobOffer);
     
     app.route('/api/offers')
-        .get(/* Get all offers + filter */);
+        .get(auth.isInRole('recruiter'), controllers.jobOffers.getAllJobOffers);
     
     app.route('/api/offers/:id')
         .get(/* View specific offer */);
