@@ -26,8 +26,8 @@ module.exports = function (app) {
         .get(auth.isInRole('recruiter'), controllers.jobOffers.getJobOfferDetailsInfo);
 
     app.route('/api/candidates/:id')
-        .get(/*Get candidate view page */)
-        .put(/* Accepct specific candidate to interview*/)
+        .get(auth.isInRole('recruiter'), controllers.users.getUser)
+        .put(auth.isInRole('recruiter'), controllers.jobOffers.acceptCandidateForTheJob);
 
     app.get('/api/*', function (req, res) {
         res.status(404);

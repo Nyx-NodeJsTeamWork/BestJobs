@@ -18,12 +18,10 @@ var userSchema = mongoose.Schema({
         require: '{PATH} is required',
         enum: ['admin', 'recruiter', 'user']
     },
-    jobsApplied: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'JobOffer'
-        }
-    ],
+    jobsApplied: [{
+        type: Schema.Types.ObjectId,
+        ref: 'JobOffer'
+    }],
     cv: {
         type: Schema.Types.ObjectId,
         ref: 'CV'

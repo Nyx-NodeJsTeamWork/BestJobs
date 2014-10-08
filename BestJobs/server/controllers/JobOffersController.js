@@ -12,6 +12,7 @@ module.exports = {
         var orderType = req.query.orderType === 'desc' ? '-' : '';
         
         var query = JobOffer.find()
+            .where({ isOpen: true })
             .sort(orderType + orderBy)
             .skip(DEFAULT_PAGE_SIZE * (page - 1))
             .limit(DEFAULT_PAGE_SIZE);
@@ -95,7 +96,55 @@ module.exports = {
                 }, function (err, users) {
                     res.status(200).send(users);
                 });
+            } else {
+                res.status(200).send(offer);
             }
+        });
+    },
+    acceptCandidateForTheJob: function (req, res, next) {
+        var offerId = req.body.offerId;
+        if (!offerId) {
+            return res.status(400)
+                    .send({ reason: 'There is no offer id provided!' });
+        }
+        
+        var acceptedCandidate = req.params.id;
+        
+        JobOffer.findOne({ _id: offerId }).exec(function (err, offer) {
+            if (err) {
+                return res.status(400)
+                    .send({ reason: 'There is no offer with this id!' });
+            }
+            
+            if (!offer.author.equals(req.user._id)) { 
+                return res.status(400)
+                    .send({ reason: 'Can\'t hire candidate because it\'s not your own offer!' });
+            }
+
+            if (offer.candidates.indexOf(acceptedCandidate) == -1) {
+                return res.status(400)
+                    .send({ reason: 'There is no candidate in this offer with this id!' });
+            }
+            
+            if (!offer.isOpen) {
+                return res.status(400)
+                    .send({ reason: 'This offer is closed!' });
+            }
+            
+            var updateOfferModel = {
+                hired : acceptedCandidate,
+                isOpen : false
+            };
+            
+            
+            JobOffer.update({ _id: offerId }, updateOfferModel, function (updateErr, updatedOffer) {
+                if (updateErr) {
+                    return res.status(405)
+                    .send({ reason: 'Problem occure when updating the offer: ' + updateErr.toString() });
+                }
+                
+                res.status(200).end();
+            })
         });
     }
 };
