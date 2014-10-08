@@ -12,7 +12,7 @@ var app = angular.module('myApp', ['ngRoute', 'ngResource', 'ngCookies']).
 
         $routeProvider
             .when('/', {
-                templateUrl: 'views/partials/home.html'
+                templateUrl: '/partials/account/home'
             })
             .otherwise({ redirectTo: '/' });
     }])
