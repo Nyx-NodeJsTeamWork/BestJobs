@@ -1,4 +1,4 @@
-.row(ng-controller="LoginCtrl")
+.row
     .col-md-3
     .col-lg-6
         .well.bs-component
@@ -16,4 +16,5 @@
             a.btn.btn-default.btn-sm.btn-block(href='#/signup') Register
             hr
             .alert.alert-danger(data-ng-hide='message == ""')
+                | {{message}}
         .col-md-3

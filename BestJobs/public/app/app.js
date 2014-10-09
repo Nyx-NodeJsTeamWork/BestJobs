@@ -11,9 +11,6 @@ var app = angular.module('bestJobs', ['ngRoute', 'ngResource']).
     };
     
     $routeProvider
-    //.when('/', {
-    //    templateUrl: '/partials/account/home'
-    //})
     .when('/login', {
         templateUrl: '/partials/account/login',
         controller: 'LoginCtrl'

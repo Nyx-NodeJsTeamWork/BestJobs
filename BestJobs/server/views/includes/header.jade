@@ -5,7 +5,7 @@ block main-content
                 a.navbar-brand(href="#/") Best Jobs
             .navbar-collapse.collapse
                 ul.nav.navbar-nav
-                    li
-                        a(href="#/items") Search
                     li(ng-show="identity.isAuthenticated()")
-                        a(href="#/myads") My Ads
+                        a(href="#/home") Home
+
+                div(ng-include="'partials/account/userNav'")
