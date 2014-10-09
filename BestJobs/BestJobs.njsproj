@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="public\app\account\usersResource.js" />
+    <Compile Include="public\app\jobSeeker\HomeSeekerCtrl.js" />
     <Compile Include="server.js" />
     <Compile Include="public\app\account\auth.js" />
     <Compile Include="public\app\account\identity.js" />
@@ -172,6 +173,7 @@
   <ItemGroup>
     <Content Include="public\app\account\login.jade" />
     <Content Include="package.json" />
+    <Content Include="public\app\jobSeeker\home.jade" />
     <Content Include="public\css\site.css" />
     <Content Include="public\css\site.styl" />
     <Content Include="public\lib\angular-resource\.bower.json" />
@@ -299,6 +301,8 @@
   <ItemGroup>
     <Folder Include="public\app\" />
     <Folder Include="public\app\account\" />
+    <Folder Include="public\app\jobSeeker\" />
+    <Folder Include="public\app\recruiter\" />
     <Folder Include="public\css\" />
     <Folder Include="public\lib\" />
     <Folder Include="public\lib\angular-resource\" />

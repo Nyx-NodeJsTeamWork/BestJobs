@@ -22,6 +22,11 @@ var app = angular.module('bestJobs', ['ngRoute', 'ngResource']).
         templateUrl: '/partials/account/signup',
         controller: 'SignUpCtrl'
     })
+    .when('/home', {
+        templateUrl: '/partials/jobSeeker/home',
+        controller: 'HomeSeekerCtrl',
+        resolve: routeUserChecks.authenticated
+    })
     .otherwise({ redirectTo: '/login' });
 }])
 .value('toastr', toastr)
