@@ -1,0 +1,40 @@
+.row(ng-controller="RegisterCtrl")
+    .row
+        .col-md-12.text-left.container
+            input(type='radio' name='registerType', id='user', ng-model='registration', ng-value='false', ng-checked='true')
+            label(for='user')
+                | - register User
+            br
+            input(type='radio', name='registerType', id='hr', ng-model='registration', ng-value='true')
+            label(for='hr')
+                | - register HR
+    .col-lg-6
+        .well.bs-component
+            form.form-horizontal.form-Login(name='registerHrForm', ng-show="registration")
+                legend Register HR
+                .form-group
+                    label.col-lg-3.control-label Username
+                    .col-lg-9
+                        input.form-control(type='text', placeholder='Username', data-ng-model='hr.username', required='required', autofocus='autofocus')
+                .form-group
+                    label.col-lg-3.control-label Password
+                    .col-lg-9
+                        input.form-control(type='password', placeholder='Password', data-ng-model='hr.password', required='required')
+                button.btn.btn-primary.btn-info.btn-block(type='submit', ng-click='registerHr(hr, registerHrForm)') Register
+
+            form.form-horizontal.form-Login(name='registerUserForm', ng-hide="registration")
+                legend Register User
+                .form-group
+                    label.col-lg-3.control-label Username
+                    .col-lg-9
+                        input.form-control(type='text', placeholder='Username', data-ng-model='user.username', required='required', autofocus='autofocus')
+                .form-group
+                    label.col-lg-3.control-label Password
+                    .col-lg-9
+                        input.form-control(type='password', placeholder='Password', data-ng-model='user.password', required='required')
+                button.btn.btn-primary.btn-info.btn-block(type='submit', ng-click='registerUser(user, registerUserForm)') Register
+            hr
+            .alert.alert-danger(data-ng-hide='message == ""')
+                | {{message}}
+        .col-md-3
+
