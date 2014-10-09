@@ -31,6 +31,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="public\app\account\NavCtrl.js" />
     <Compile Include="public\app\account\usersResource.js" />
     <Compile Include="public\app\jobSeeker\HomeSeekerCtrl.js" />
     <Compile Include="server.js" />
@@ -173,6 +174,7 @@
   <ItemGroup>
     <Content Include="public\app\account\login.jade" />
     <Content Include="package.json" />
+    <Content Include="public\app\account\userNav.jade" />
     <Content Include="public\app\jobSeeker\home.jade" />
     <Content Include="public\css\site.css" />
     <Content Include="public\css\site.styl" />
