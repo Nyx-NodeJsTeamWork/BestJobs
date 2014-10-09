@@ -1,0 +1,24 @@
+﻿.container 
+   .row
+        .col-md-4
+            .row
+                div
+                    strong Author: {{job.author}}  
+            .row
+                br
+                strong Published on:
+                |  {{job.dateCreated | date: 'MMM dd, yyyy'}}
+
+        .col-md-4
+            h2 {{job.title}}
+
+        .col-md-2
+            button.btn.btn-info Apply
+        .col-md-2
+            button.btn.btn-info Cancel
+    .row
+        .col-md-12.text-center
+            p 
+                strong Description:
+            p.text-info {{job.descriptionInfo}}
+             

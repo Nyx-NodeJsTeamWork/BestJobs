@@ -5,7 +5,7 @@ app.controller('LoginCtrl', function ($scope, $location, notifier, identity, aut
         notifier.error('You\'re already authenticated!');
         
         if (identity.currentUser.roles == 'user') { 
-            $location.path('/home');
+            $location.path('/jobs');
         }
 
         return;
@@ -19,7 +19,7 @@ app.controller('LoginCtrl', function ($scope, $location, notifier, identity, aut
                 if (user) {
                     notifier.success('Successful login!');
                     if (user.roles == 'user') { 
-                        $location.path('/home');
+                        $location.path('/jobs');
                     }
                     
                     if (user.roles == 'recruiter') { 
