@@ -5,10 +5,16 @@ app.controller('LoginCtrl', function ($scope, $location, notifier, identity, aut
     
     $scope.login = function (user, loginForm) {
         if (loginForm.$valid) {
-            auth.login(user).then(function (success) {
-                if (success) {
+            auth.login(user).then(function (user) {
+                if (user) {
                     notifier.success('Successful login!');
-                    $location.path('/');
+                    if (user.roles == 'user') { 
+                        $location.path('/home');
+                    }
+                    
+                    if (user.roles == 'recruiter') { 
+                        
+                    }
                 }
                 else {
                     notifier.error('Username/Password combination is not valid!');
