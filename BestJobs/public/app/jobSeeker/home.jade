@@ -1,13 +1,13 @@
-﻿.row(ng-controller="HomeSeekerCtrl")
-  .col-sm-4.col-lg-4.col-md-4(ng-repeat="offer in jobOffers | orderBy: sort")                
-    .thumbnail
-      a(href='#/items/{{offer._id}}' title="{{ offer.title }}")                    
-        .ratio(style="background-image:url('images/{{ item.imageUrl }}')" ng-if="item.imageUrl")
-        .ratio(style="background-image:url('images/default.jpg')" ng-if="!item.imageUrl")
-      .caption
-        h4.pull-right {{ offer.dateCreated | date: 'MMM d yyyy' }}
-        h4.truncate
-          a(href='#/items/{{offer._id}}') {{ offer.title }}
-        p.truncate {{ offer.descriptionInfo }}
-        p.truncate Author: {{ offer.author }}
-        p.truncate {{ offer.skillsRequired }}
+﻿﻿.row(ng-controller="HomeSeekerCtrl")
+    .col-sm-4.col-lg-4.col-md-4(ng-repeat="offer in jobOffers | orderBy: sort")
+        .thumbnail
+            a(href='#/jobs/{{offer._id}}' title="{{ offer.title }}")
+            .ratio(style="background-image:url('images/{{ item.imageUrl }}')" ng-if="item.imageUrl")
+            .ratio(style="background-image:url('images/default.jpg')" ng-if="!item.imageUrl")
+        .caption
+            h4.pull-right {{ offer.dateCreated | date: 'MMM d yyyy' }}
+            h4.truncate
+            a(href='#/jobs/{{offer._id}}') {{ offer.title }}
+            p.truncate {{ offer.descriptionInfo }}
+            p.truncate Author: {{ offer.author }}
+            p.truncate {{ offer.skillsRequired }}
